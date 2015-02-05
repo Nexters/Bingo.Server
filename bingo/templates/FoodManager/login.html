@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Thanks BINGO!</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta charset="UTF-8">
+
+        {% load staticfiles %}
+        <script src="{% static 'static/jquery-1.11.2.min.js' %}"></script>
+		<script src="{% static 'static/jquery.sha256.min.js' %}"></script>
+		<script src="{% static 'static/bootstrap/js/bootstrap.js' %}"></script>
+		<script src="{% static 'static/bingo/js/FoodManager/login.js' %}"/></script>
+		
+		<link rel="stylesheet" href="{% static 'static/bootstrap/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'static/bootstrap/css/bootstrap-theme.min.css' %}">
+	</head>
+
+	<body>
+
+		<div class="col-xs-10 col-xs-offset-1">
+			<h2>LOG IN</h2><br/>
+		</div>
+
+		<div class="col-xs-10 col-xs-offset-1">
+			<form role="form" id="login_form" action="{% url 'food_manager:login' %}" method="post">
+			{% csrf_token %}
+
+				<div class="col-xs-5">
+
+					<input type="text" id="manager_id" name="manager_id" class="form-control" placeholder="ID"><br/>
+					<input type="password" id="password" name="password" class="form-control" placeholder="PASSWORD"><br/>
+		
+					<input type="button" id="submit_btn" class="btn btn-primary col-xs-4" value="LOG IN">
+				</div>
+			</form>
+		</div>
+
+
+	</body>
+</html>

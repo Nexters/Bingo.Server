@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Thanks BINGO!</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta charset="UTF-8">
+
+        {% load staticfiles %}
+        <script src="{% static 'static/jquery-1.11.2.min.js' %}"></script>
+		<script src="{% static 'static/bootstrap/js/bootstrap.js' %}"></script>
+		<script src="{% static 'static/bingo/js/FoodManager/reg_food.js' %}"></script>
+		
+		<link rel="stylesheet" href="{% static 'static/bootstrap/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'static/bootstrap/css/bootstrap-theme.min.css' %}">
+	</head>
+
+	<body>
+
+		<div class="col-xs-10 col-xs-offset-1">
+			<h2>새로운 음식물 등록</h2>
+			<a href="{% url 'food_manager:logout' %}">로그아웃</a>
+			<br/><br/>
+		</div>
+		
+		<form role="form" id="new_food_form" action="{% url 'food_manager:reg_food' %}" method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+			<div class="col-xs-10 col-xs-offset-1">
+				<input type="text" id="food_name" name="food_name" class="form-control" placeholder="이름"><br/>
+				<input type="file" id="food_icon1" name="food_icon1" class="form-control" placeholder="아이콘"><br/>
+				<input type="file" id="food_icon2" name="food_icon2" class="form-control" placeholder="아이콘"><br/>
+				<input type="number" id="food_rec_exp" name="food_rec_exp" class="form-control" placeholder="권장 유통기한"><br/>
+				<p>'/ (slash)'로 항목 구분</p>
+				<textarea rows="10" id="food_extra_info" name="food_extra_info" class="form-control" placeholder="추가 정보"></textarea><br/>
+				<!-- <p>', (comma)'로 항목 구분</p>
+				<input type="text" id="no_mix_list" name="no_mix_list" class="form-control" placeholder="상성 음식물 리스트"><br/> -->
+
+				<input type="button" id="submit_btn" class="btn btn-primary col-xs-2" value="등록">
+			</div>
+		</form>
+	</body>
+</html>
+
