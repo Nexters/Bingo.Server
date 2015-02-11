@@ -10,7 +10,7 @@ class FoodInfo(models.Model):
 		return self.food_name
 	def __unicode__(self):
 		return u'%s' % (self.food_name)
-	rec_exp_date = models.IntegerField(default=1)
+	rec_exp = models.IntegerField(default=1)
 	icon_img_path1 = models.CharField(max_length=128)
 	icon_img_path2 = models.CharField(max_length=128)
 	frequency = models.IntegerField(default=0)
@@ -28,4 +28,10 @@ class NoMixFoodInfo(models.Model):
 class ExtraFoodList(models.Model):
 	food_name = models.CharField(max_length=30)
 	frequency = models.IntegerField(default=0)
+
+class FoodInfoHistory(models.Model):
+	food = models.ForeignKey(FoodInfo)
+	history_type = models.IntegerField(default=0)	# type 0: new data
+													# type 1: modified data (except icon image)
+													# type 2: modified data & icon
 

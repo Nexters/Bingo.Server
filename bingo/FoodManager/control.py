@@ -8,7 +8,7 @@ from django.core.exceptions import MultipleObjectsReturned
 import os
 import json
 
-from FoodManager.models import FoodManager, FoodInfo, FoodExtraInfo, NoMixFoodInfo, ExtraFoodList
+from FoodManager.models import *
 
 from FoodManager.sessions import *
 from FileUploader import FileUploader
@@ -57,12 +57,17 @@ def regFood(request):
 
 		food = FoodInfo (
 				food_name = food_name,
-				rec_exp_date = food_rec_exp,
+				rec_exp = food_rec_exp,
 				icon_img_path1 = food_icon1_fp,
 				icon_img_path2 = food_icon2_fp,
 				frequency = 1
 			)
 		food.save()
+
+		FoodInfoHistory (
+			food = food,
+			history_type = 0
+		).save()
 
 		food_extra_info_list = _getFoodExtraInfoList(food_extra_info)
 		for info in food_extra_info_list:

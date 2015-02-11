@@ -49,7 +49,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'FoodManager',
-
+    'BingoAPI',
 )
 
 MIDDLEWARE_CLASSES = (
