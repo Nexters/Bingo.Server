@@ -1,12 +1,14 @@
 from django.http import HttpResponse
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 
 import json
 
 from FoodManager.models import *
 
 def getFoodInfo(request):
+	
 	resp = {}
+	
 	try:
 		food_info_list = FoodInfo.objects.all().order_by('id')
 		food_info_list_json = []
@@ -38,10 +40,10 @@ def getFoodInfo(request):
 	return HttpResponse(json.dumps(resp))
 
 
-
-
 def updateFoodInfo(request, last_history):
+	
 	resp = {}
+
 	try:
 		starting_his_id = int(last_history) + 1
 		new_history_list = FoodInfoHistory.objects.filter(id__gte=starting_his_id)
@@ -92,6 +94,50 @@ def updateFoodInfo(request, last_history):
 		resp['need_update'] = False
 
 	return HttpResponse(json.dumps(resp))
+
+
+def updateExtraFoodInfo(request):
+	# class ExtraFoodList(models.Model):
+	# 	food_name = models.CharField(max_length=30)
+	# 	frequency = models.IntegerField(default=0)
+
+	resp = {}
+
+	if request.method == 'POST':
+		food_name = request.POST.get('food_name')
+		try:
+			food = FoodInfo.objects.get(food_name=food_name)
+			food.frequency = food.frequency + 1
+			food.save()
+			resp['result'] = True
+			resp['message'] = 'Already existing food object in FoodInfo table.'
+		except ObjectDoesNotExist:
+			try:
+				extra_food = ExtraFood.objects.get(food_name=food_name)
+				extra_food.frequency = extra_food.frequency + 1
+				extra_food.save()
+				resp['result'] = True
+				resp['message'] = 'Existing food object in ExtraFood table.'
+			except objectDoesNotExist:
+				extra_food = ExtraFood (
+						food_name = food_name,
+						frequency = 1
+					)
+				extra_food.save()
+			except MultipleObjectsReturned:
+				resp['result'] = False
+				resp['message'] = 'MultipleObjectsReturned exception in ExtraFood.'
+		except MultipleObjectsReturned:
+			resp['result'] = False
+			resp['message'] = 'MultipleObjectsReturned exception in FoodInfo.'
+
+	else:
+		resp['result'] = False
+		resp['message'] = 'Wrong access'
+
+	return HttpResponse(json.dumps(resp))
+
+
 
 
 

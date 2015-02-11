@@ -13,7 +13,7 @@ class FoodExtraInfoAdmin(admin.ModelAdmin):
 class NoMixFoodInfoAdmin(admin.ModelAdmin):
 	list_display = ('id', 'food_id1', 'food_id2', 'extra_info')
 
-class ExtraFoodListAdmin(admin.ModelAdmin):
+class ExtraFoodAdmin(admin.ModelAdmin):
 	list_display = ('id', 'food_name', 'frequency')
 
 class FoodInfoHistoryAdmin(admin.ModelAdmin):
@@ -23,5 +23,5 @@ admin.site.register(FoodManager, FoodManagerAdmin)
 admin.site.register(FoodInfo, FoodInfoAdmin)
 admin.site.register(FoodExtraInfo, FoodExtraInfoAdmin)
 admin.site.register(NoMixFoodInfo, NoMixFoodInfoAdmin)
-admin.site.register(ExtraFoodList, ExtraFoodListAdmin)
+admin.site.register(ExtraFood, ExtraFoodAdmin)
 admin.site.register(FoodInfoHistory, FoodInfoHistoryAdmin)

@@ -7,9 +7,9 @@ class FoodManager(models.Model):
 class FoodInfo(models.Model):
 	food_name = models.CharField(max_length=30)
 	def __str__(self):
-		return self.food_name
+		return self.id + '.' + self.food_name
 	def __unicode__(self):
-		return u'%s' % (self.food_name)
+		return u'%d. %s' % (self.id, self.food_name)
 	rec_exp = models.IntegerField(default=1)
 	icon_img_path1 = models.CharField(max_length=128)
 	icon_img_path2 = models.CharField(max_length=128)
@@ -25,7 +25,7 @@ class NoMixFoodInfo(models.Model):
 	food_id2 = models.ForeignKey(FoodInfo, related_name="food2")
 	extra_info = models.TextField()
 
-class ExtraFoodList(models.Model):
+class ExtraFood(models.Model):
 	food_name = models.CharField(max_length=30)
 	frequency = models.IntegerField(default=0)
 
