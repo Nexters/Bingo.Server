@@ -83,7 +83,9 @@ def updateFoodInfo(request, last_history):
 					type0_list.append(data)
 				elif history.history_type == 2:
 					type2_list.append(data)
-
+		# type 0: new data
+		# type 1: modified data (except icon image)
+		# type 2: modified data & icon
 		resp['need_update'] = True
 		resp['type0'] = type0_list
 		resp['type1'] = type1_list
@@ -96,7 +98,7 @@ def updateFoodInfo(request, last_history):
 	return HttpResponse(json.dumps(resp))
 
 
-def updateExtraFoodInfo(request):
+def updateExtraFood(request):
 	# class ExtraFoodList(models.Model):
 	# 	food_name = models.CharField(max_length=30)
 	# 	frequency = models.IntegerField(default=0)
