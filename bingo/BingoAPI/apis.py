@@ -21,11 +21,11 @@ def getFoodInfo(request):
 			icon1_temp = food_info.icon_img_path1
 			temp = icon1_temp.split('/')
 			icon1_temp = temp[len(temp)-1]
-			food_info_json['icon1'] = 'http://http://www.thanksbingo.com/static/media/icons/' + icon1_temp
+			food_info_json['icon1'] = 'http://www.thanksbingo.com/static/media/icons/' + icon1_temp
 			icon2_temp = food_info.icon_img_path2
 			temp = icon2_temp.split('/')
 			icon2_temp = temp[len(temp)-1]
-			food_info_json['icon2'] = 'http://http://www.thanksbingo.com/static/media/icons/' + icon2_temp
+			food_info_json['icon2'] = 'http://www.thanksbingo.com/static/media/icons/' + icon2_temp
 			food_info_json['frequency'] = food_info.frequency
 
 			food_info_list_json.append(food_info_json)
@@ -72,11 +72,11 @@ def updateFoodInfo(request, last_history):
 				icon1_temp = food_info.icon_img_path1
 				temp = icon1_temp.split('/')
 				icon1_temp = temp[len(temp)-1]
-				data['icon1'] = 'http://http://www.thanksbingo.com/static/media/icons/' + icon1_temp
+				data['icon1'] = 'http://www.thanksbingo.com/static/media/icons/' + icon1_temp
 				icon2_temp = food_info.icon_img_path2
 				temp = icon2_temp.split('/')
 				icon2_temp = temp[len(temp)-1]
-				data['icon2'] = 'http://http://www.thanksbingo.com/static/media/icons/' + icon2_temp
+				data['icon2'] = 'http://www.thanksbingo.com/static/media/icons/' + icon2_temp
 				data['frequency'] = food_info.frequency
 
 				if history.history_type == 0:
