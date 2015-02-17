@@ -139,19 +139,3 @@ def updateExtraFood(request):
 
 	return HttpResponse(json.dumps(resp))
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
